@@ -11,8 +11,7 @@ services:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
     command:
-      - '-config.file=/etc/prometheus/prometheus.yml'
-      - '-storage.local.path=/prometheus'
+      - '--config.file=/etc/prometheus/prometheus.yml'
     expose:
       - 9090
     ports:
@@ -22,17 +21,21 @@ services:
       - node-exporter
 
   snmp-exporter:
-    image: amkay/snmp_exporter
+    image: prom/snmp_exporter
     volumes:
       - ./snmp_exporter/:/etc/snmp_exporter/
     expose:
       - 9116
+    ports:
+      - 9116:9116
 
   node-exporter:
     image: prom/node-exporter
     expose:
       - 9100
-
+    ports:
+      - 9100:9100
+      
   grafana:
     image: grafana/grafana
     depends_on:
@@ -45,3 +48,18 @@ services:
       - grafana_data:/var/lib/grafana
     env_file:
       - ./grafana/config.env
+      
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+    ports:
+      - 9000:9000
+    expose:
+      - 9000
