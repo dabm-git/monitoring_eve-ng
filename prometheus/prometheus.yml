@@ -43,6 +43,8 @@ scrape_configs:
       - targets:
         - 192.168.0.2 # fortigate device. 
     metrics_path: /snmp
+    scrape_interval: 3m
+    scrape_timeout : 3m
     params:
       module: [fortinet_fortigate]
     relabel_configs:
