@@ -53,4 +53,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: snmp_exporter:9116  # SNMP exporter.   
+        replacement: 192.168.0.252:9116  # SNMP exporter.   
