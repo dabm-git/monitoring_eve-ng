@@ -1236,11 +1236,6 @@ apcups:
 # Tested on a FortiGate 240D with 3 FortiAP-320C
 #
 fortinet_fortigate:
-  auth:
-  username: admin
-  password: admin
-  auth_protocol: SHA
-  security_level: authPriv
   walk:
     - 1.3.6.1.2.1.1.3
     - 1.3.6.1.2.1.31.1.1
