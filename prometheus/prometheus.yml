@@ -25,7 +25,7 @@ scrape_configs:
       - targets:
       # List of targets of the subnet
         - 192.168.0.1 # Router
-        - 192.168.0.2 # Forti
+       #  - 192.168.0.2 # Forti need special module
         - 192.168.0.3 # SW1
         - 192.168.0.4 # SW0
     metrics_path: /snmp
