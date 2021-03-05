@@ -1240,7 +1240,6 @@ fortinet_fortigate:
   username: admin
   password: admin
   auth_protocol: SHA
-  priv_protocol: DES
   security_level: authPriv
   walk:
     - 1.3.6.1.2.1.1.3
