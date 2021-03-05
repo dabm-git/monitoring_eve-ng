@@ -8,6 +8,7 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
+    restart: unless-stopped
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -24,6 +25,7 @@ services:
   snmp-exporter:
     image: prom/snmp-exporter
     container_name: snmpexporter
+    restart: unless-stopped
     volumes:
       - ./snmp_exporter/:/etc/snmp_exporter/
     expose:
@@ -34,6 +36,7 @@ services:
   node-exporter:
     image: prom/node-exporter
     container_name: nodeexporter
+    restart: unless-stopped
     expose:
       - 9100
     ports:
@@ -42,6 +45,7 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    restart: unless-stopped
     depends_on:
       - prometheus
     expose:
