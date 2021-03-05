@@ -38,13 +38,13 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 'snmp-exporter:9116'  # SNMP exporter.
+        
   - job_name: 'snmp_forti'
     static_configs:
       - targets:
         - 192.168.0.2 # fortigate device. 
     metrics_path: /snmp
-    scrape_interval: 3m
-    scrape_timeout : 3m
+    scrape_timeout : 15s
     params:
       module: [fortinet_fortigate]
     relabel_configs:
@@ -53,4 +53,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 192.168.0.252:9116  # SNMP exporter.   
+        replacement: 192.168.0.252:9116  # SNMP exporter, set IP, docker bug: cant resolve snmp-exporter in job2!!
