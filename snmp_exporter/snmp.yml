@@ -1237,13 +1237,12 @@ apcups:
 #
 fortinet_fortigate:
     auth:
-        username: admin  # Required, no default. -u option to NetSNMP.                                                                                                                                         
-        security_level: authNoPriv  # Defaults to noAuthNoPriv. -l option to NetSNMP.                                                                                                                                  
-                                # Can be noAuthNoPriv, authNoPriv or authPriv.                                                                                                                                   
-        password: admin  # Has no default. Also known as authKey, -A option to NetSNMP.                                                                                                                             
-                # Required if security_level is authNoPriv or authPriv.                                                                                                                                        
-        auth_protocol: SHA  # MD5 or SHA, defaults to SHA. -a option to NetSNMP.                                                                                                                                       
-                      # Used if security_level is authNoPriv or authPriv.  
+     username: admin
+     password: admin
+     auth_protocol: SHA
+     priv_protocol: DES
+     security_level: authPriv
+     priv_password: admin 
   walk:
     - 1.3.6.1.2.1.1.3
     - 1.3.6.1.2.1.31.1.1
