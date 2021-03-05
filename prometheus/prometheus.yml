@@ -38,3 +38,17 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 'snmp-exporter:9116'  # SNMP exporter.
+ - job_name: 'snmp_forti'
+    static_configs:
+      - targets:
+        - 192.168.0.2 # fortigate device. 
+    metrics_path: /snmp
+    params:
+      module: [fortinet_fortigate]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp_exporter:9116  # SNMP exporter.   
