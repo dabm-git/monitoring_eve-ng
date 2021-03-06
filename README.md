@@ -1,2 +1,2 @@
 # monitoring_eve-ng
- Docker stack for monitoring for eve-ng. Prometheus, Grafana, SNMP Exporter, Node exporter and Portainer
+ Docker stack for monitoring Eve-ng. Prometheus, Grafana, SNMP Exporter, Node exporter and Portainer
