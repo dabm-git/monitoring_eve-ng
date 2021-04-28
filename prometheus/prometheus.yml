@@ -24,10 +24,10 @@ scrape_configs:
     static_configs:
       - targets:
       # List of targets of the subnet
-        - 192.168.0.1 # Router
-       #  - 192.168.0.2 # Forti need special module
-        - 192.168.0.3 # SW1
-        - 192.168.0.4 # SW0
+        - 192.168.0.1 # Mikrotik Router        
+        - 192.168.0.3 # Cisco SW0
+        - 192.168.0.4 # Cisco SW1
+        #  Forti needs a special module snmp_forti
     metrics_path: /snmp
     params:
       module: [default]
@@ -53,4 +53,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 192.168.0.252:9116  # SNMP exporter, set IP, docker bug: cant resolve snmp-exporter in job2!!
+        replacement: 192.168.0.253:9116  # SNMP exporter IP, static ip recomended, docker bug: cant resolve snmp-exporter in job2!!
