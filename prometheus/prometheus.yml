@@ -12,8 +12,7 @@ global:
 # Here it's Prometheus itself.
 scrape_configs:
   - job_name: 'prometheus'
-
-    scrape_interval: 5s
+    scrape_interval: 15s
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
@@ -21,6 +20,7 @@ scrape_configs:
          - targets: ['localhost:9090','localhost:9100']
 
   - job_name: 'snmp'
+    scrape_interval: 15s
     static_configs:
       - targets:
       # List of targets of the subnet
@@ -38,14 +38,16 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: '192.168.1.254:9116'  # SNMP exporter.
+        replacement: 'localhost:9116'  # SNMP exporter.
         
   - job_name: 'snmp_forti'
+  
+    scrape_interval: 15s
     static_configs:
       - targets:
         - 192.168.1.2 # fortigate device. 
     metrics_path: /snmp
-    scrape_timeout : 15s
+ 
     params:
       module: [fortinet_fortigate]
     relabel_configs:
@@ -54,4 +56,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: localhost:9116  # SNMP exporter IP, static ip recomended, docker bug: cant resolve snmp-exporter in job2!!
+        replacement: 'localhost:9116'  # SNMP exporter IP, static ip recomended, docker bug: cant resolve snmp-exporter in job2!!
